@@ -3,16 +3,24 @@ Fraud Detection System (End-to-End ML + MLOps)
 Overview
 
 This project implements a complete machine learning pipeline for detecting fraudulent credit card transactions.
-It integrates data preprocessing, model training, hyperparameter tuning, experiment tracking, and real-time inference through an API — following modern MLOps best practices.
+
+It integrates data preprocessing, model training, hyperparameter tuning, experiment tracking, and real-time inference 
+
+through an API — following modern MLOps best practices.
 
 ⸻
 
 Features
 	•	Data Pipeline: Efficient preprocessing and train/test splitting from the raw dataset.
+
 	•	Model Training: LightGBM classifier with imbalanced learning (class_weight='balanced').
+
 	•	Hyperparameter Tuning: Optuna integration with automatic MLflow experiment tracking.
+
 	•	Scalable Pipeline: Scikit-learn Pipeline combines preprocessing + model for reproducibility.
+
 	•	Model Serving: FastAPI backend for real-time prediction requests.
+
 	•	Monitoring: ROC-AUC score evaluation and MLflow metric logging.
 
 ⸻
@@ -22,24 +30,31 @@ Project Structure
 fraud_detection/
 │
 ├── src/
-│   ├── data_pipeline.py     # Data loading and preprocessing
-│   ├── model_training.py    # Baseline LightGBM training
-│   ├── tuning.py            # Optuna hyperparameter optimization
-│   ├── api.py               # FastAPI app for real-time inference
-│   ├── utils.py             # MLflow setup and helper functions
+│   ├── data_pipeline.py        # Data loading and preprocessing
+
+│   ├── model_training.py       # Baseline LightGBM training
+
+│   ├── tuning.py               # Optuna hyperparameter optimization
+
+│   ├── api.py                  # FastAPI app for real-time inference
+
+│   ├── utils.py                # MLflow setup and helper functions
+
 │   └── __init__.py
 │
 ├── config/
-│   └── best_params.yaml     # Saved best hyperparameters
+│   └── best_params.yaml        # Saved best hyperparameters
 │
 ├── checkpoints/
-│   └── final_model.pkl      # Serialized pipeline (scaler + model)
-|
-│__ data/                    # the data the model has been trained no
-├── train.py                 # Retrain final model with tuned params
-├── requirements.txt
-└── README.md
+│   └── final_model.pkl         # Serialized pipeline (scaler + model)
+│
+├── data/                       # Raw dataset (ignored in .gitignore)
+│
+├── train.py                    # Retrain final model with tuned params
 
+├── requirements.txt
+
+└── README.md
 
 ⸻
 
@@ -102,28 +117,41 @@ Example output
 
 📊 Results
 
-Metric	Score
-ROC-AUC (final)	0.9646
-Precision (fraud)	0.83
-Recall (fraud)	0.86
-Accuracy (overall)	0.999
+ROC-AUC (final) : 0.9646
+
+Precision (fraud): 0.83
+
+Recall (fraud) :	0.86
+
+Accuracy (overall)	: 0.999
 ---- 
 
 Tech Stack
+
 	•	Python 3.10
+
 	•	LightGBM
+
 	•	Optuna
+
 	•	Scikit-learn
+
 	•	FastAPI
+
 	•	MLflow
+
 	•	Joblib
 
 ⸻
 
 Key Takeaways
+
 	•	Built a production-ready pipeline combining ML and MLOps principles.
+
 	•	Automated tuning + experiment tracking via Optuna and MLflow.
+
 	•	Deployed model as a real-time prediction API.
+
 	•	Achieved 99.9% accuracy and AUC ≈ 0.96 on real-world imbalanced data.
 
 ⸻

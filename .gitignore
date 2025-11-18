@@ -1,0 +1,54 @@
+# -----------------
+# Python / VSCode
+# -----------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.DS_Store
+.vscode/
+.env/
+.venv/
+
+# -----------------
+# Model artifacts / Checkpoints
+# -----------------
+checkpoints/
+*.pkl
+*.pt
+*.pth
+*.joblib
+*.sav
+
+# -----------------
+# MLflow / Optuna logs
+# -----------------
+mlruns/
+optuna_studies.db
+logs/
+
+# -----------------
+# Temporary / Cache / Output
+# -----------------
+*.log
+*.tmp
+*.yaml~
+*.csv~
+__MACOSX/
+.ipynb_checkpoints/
+
+# -----------------
+# Data
+# -----------------
+data/
+datasets/
+raw_data/
+*.zip
+*.tar.gz
+
+# -----------------
+# Environment files
+# -----------------
+env/
+venv/
+*.egg-info/

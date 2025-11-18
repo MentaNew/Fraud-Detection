@@ -1,10 +1,4 @@
-Perfect 🔥
-Here’s a ready-to-use README.md section you can paste directly into your repo.
-It’s concise, professional, and shows recruiters you know MLOps, ML engineering, and production deployment.
-
-⸻
-
-🕵️‍♂️ Fraud Detection System (End-to-End ML + MLOps)
+Fraud Detection System (End-to-End ML + MLOps)
 
 Overview
 
@@ -13,17 +7,17 @@ It integrates data preprocessing, model training, hyperparameter tuning, experim
 
 ⸻
 
-🚀 Features
-	•	📦 Data Pipeline: Efficient preprocessing and train/test splitting from the raw dataset.
-	•	🤖 Model Training: LightGBM classifier with imbalanced learning (class_weight='balanced').
-	•	🎯 Hyperparameter Tuning: Optuna integration with automatic MLflow experiment tracking.
-	•	🧠 Scalable Pipeline: Scikit-learn Pipeline combines preprocessing + model for reproducibility.
-	•	⚙️ Model Serving: FastAPI backend for real-time prediction requests.
-	•	📈 Monitoring: ROC-AUC score evaluation and MLflow metric logging.
+Features
+	•	Data Pipeline: Efficient preprocessing and train/test splitting from the raw dataset.
+	•	Model Training: LightGBM classifier with imbalanced learning (class_weight='balanced').
+	•	Hyperparameter Tuning: Optuna integration with automatic MLflow experiment tracking.
+	•	Scalable Pipeline: Scikit-learn Pipeline combines preprocessing + model for reproducibility.
+	•	Model Serving: FastAPI backend for real-time prediction requests.
+	•	Monitoring: ROC-AUC score evaluation and MLflow metric logging.
 
 ⸻
 
-🧩 Project Structure
+Project Structure
 
 fraud_detection/
 │
@@ -49,10 +43,10 @@ fraud_detection/
 
 ⸻
 
-⚙️ Installation
+Installation
 
 # Clone repo
-git clone https://github.com/yourusername/fraud-detection.git
+git clone https://github.com/MentaNew/fraud-detection.git
 cd fraud-detection
 
 # Create env
@@ -134,18 +128,7 @@ Key Takeaways
 
 ⸻
 
-Next Steps
-	•	Add Docker containerization (Dockerfile + docker-compose.yml)
-	•	Deploy FastAPI on Render or AWS EC2
-	•	Integrate Prometheus/Grafana for runtime monitoring
-
-⸻
-
 👤 Author
 
 El Mehdi EL KASMI
 ML & Data Science — Mines Paris / HEC Paris
-
-⸻
-
-Would you like me to add a visual architecture diagram (a PNG or Mermaid flowchart) to include in your README right under the Overview section? It makes the project look super polished for recruiters.

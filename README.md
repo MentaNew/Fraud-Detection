@@ -25,25 +25,26 @@ Features
 
 ⸻
 
-Project Structure
+## Project Structure
 
+```
 fraud_detection/
 │
 ├── src/
-│   ├── data_pipeline.py      → Data loading and preprocessing
-│   ├── model_training.py     → Baseline LightGBM training
-│   ├── tuning.py             → Optuna hyperparameter optimization
-│   ├── api.py                → FastAPI app for real-time inference
-│   ├── utils.py              → MLflow setup and helper functions
+│   ├── data_pipeline.py             → Data loading and preprocessing
+│   ├── model_training.py            → Baseline LightGBM training
+│   ├── tuning.py                    → Optuna hyperparameter optimization
+│   ├── api.py                       → FastAPI app for real-time inference
+│   ├── utils.py                     → MLflow setup and helper functions
 │   └── __init__.py
 │
 ├── checkpoints/
-│   └── best_tuned_model.pkl        → Serialized pipeline (scaler + model)
+│   └── best_tuned_model.pkl         → Serialized pipeline (scaler + model)
 │
-│
-├── train.py                  → Retrain final model with tuned params
+├── train.py                         → Retrain final model with tuned params
 ├── requirements.txt
 └── README.md
+```
 
 ⸻
 

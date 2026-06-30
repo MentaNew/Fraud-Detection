@@ -1,152 +1,130 @@
-Fraud Detection System (End-to-End ML + MLOps)
+# Fraud Detection System
 
-Overview
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
+![LightGBM](https://img.shields.io/badge/LightGBM-gradient%20boosting-brightgreen)
+![MLflow](https://img.shields.io/badge/MLflow-experiment%20tracking-blue?logo=mlflow)
+![FastAPI](https://img.shields.io/badge/FastAPI-inference%20API-009688?logo=fastapi)
+![Optuna](https://img.shields.io/badge/Optuna-hyperparameter%20tuning-blueviolet)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-This project implements a complete machine learning pipeline for detecting fraudulent credit card transactions.
+End-to-end ML pipeline for detecting fraudulent credit card transactions — from raw data through hyperparameter tuning to a production-ready REST API, with full MLflow experiment tracking.
 
-It integrates data preprocessing, model training, hyperparameter tuning, experiment tracking, and real-time inference 
+---
 
-through an API — following modern MLOps best practices.
+## Results
 
-⸻
+| Metric | Score |
+|---|---|
+| ROC-AUC | **0.9646** |
+| Precision (fraud) | 0.83 |
+| Recall (fraud) | 0.86 |
+| Overall accuracy | 0.999 |
 
-Features
-	•	Data Pipeline: Efficient preprocessing and train/test splitting from the raw dataset.
-
-	•	Model Training: LightGBM classifier with imbalanced learning (class_weight='balanced').
-
-	•	Hyperparameter Tuning: Optuna integration with automatic MLflow experiment tracking.
-
-	•	Scalable Pipeline: Scikit-learn Pipeline combines preprocessing + model for reproducibility.
-
-	•	Model Serving: FastAPI backend for real-time prediction requests.
-
-	•	Monitoring: ROC-AUC score evaluation and MLflow metric logging.
-
-⸻
+---
 
 ## Project Structure
 
 ```
 fraud_detection/
-│
 ├── src/
-│   ├── data_pipeline.py             → Data loading and preprocessing
-│   ├── model_training.py            → Baseline LightGBM training
-│   ├── tuning.py                    → Optuna hyperparameter optimization
-│   ├── api.py                       → FastAPI app for real-time inference
-│   ├── utils.py                     → MLflow setup and helper functions
+│   ├── config.py            → Project root & path constants
+│   ├── data_pipeline.py     → Data loading and preprocessing
+│   ├── model_training.py    → LightGBM baseline training
+│   ├── tuning.py            → Optuna hyperparameter optimization
+│   ├── api.py               → FastAPI real-time inference server
+│   ├── utils.py             → MLflow setup helpers
 │   └── __init__.py
-│
-├── checkpoints/
-│   └── best_tuned_model.pkl         → Serialized pipeline (scaler + model)
-│
-├── train.py                         → Retrain final model with tuned params
+├── checkpoints/             → Saved model artifacts (gitignored)
+├── data/                    → Dataset (gitignored — see below)
+├── mlruns/                  → MLflow experiment logs (gitignored)
+├── train.py                 → Entry point: train baseline model
+├── Makefile                 → Common commands
 ├── requirements.txt
 └── README.md
 ```
 
-⸻
+---
 
-Installation
+## Getting Started
 
-# Clone repo
+### 1. Clone & install
+
+```bash
 git clone https://github.com/MentaNew/fraud-detection.git
 cd fraud-detection
 
-# Create env
 conda create -n fraud python=3.10
 conda activate fraud
 
-# Install dependencies
-pip install -r requirements.txt
+make install
+```
 
+### 2. Download the dataset
 
-⸻
+Download [creditcard.csv](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud) from Kaggle and place it at:
 
-🧠 Training & Tuning
+```
+data/creditcard.csv
+```
 
-1. Train baseline
+---
 
-python train.py
+## Usage
 
-2. Run Optuna tuning
+### Train baseline model
 
-python -m src.tuning
+```bash
+make train
+# or: python train.py --data data/creditcard.csv
+```
 
-This performs random search over key LightGBM parameters and logs results to MLflow.
+### Run Optuna hyperparameter tuning
 
-3. Launch MLflow UI
+```bash
+make tune
+# or: python -m src.tuning
+```
 
+Runs 40 Optuna trials with 3-fold stratified CV, logs all runs to MLflow, and saves the best pipeline to `checkpoints/best_tuned_model.pkl`.
+
+### Inspect experiments with MLflow
+
+```bash
 mlflow ui
+# open http://127.0.0.1:5000
+```
 
-View experiments at http://127.0.0.1:5000￼.
+### Start the inference API
 
-⸻
+```bash
+make api
+# or: uvicorn src.api:app --reload
+```
 
-🧪 API Deployment
+**Predict endpoint:**
 
-Start the server
-
-uvicorn src.api:app --reload
-
-Test the endpoint
-
+```bash
 curl -X POST http://127.0.0.1:8000/predict \
   -H "Content-Type: application/json" \
   -d '{"features": [0.1, -1.2, 0.5, ...]}'
+```
 
-Example output
+```json
+{"fraud_proba": 0.999999, "fraud_pred": 1}
+```
 
-{"fraud_proba": 0.9999999989, "fraud_pred": 1}
+---
 
-✅ Fraud example correctly predicted
-✅ Normal transaction returns near-zero probability
+## Tech Stack
 
-⸻
+- **LightGBM** — gradient boosting classifier with `class_weight="balanced"` for imbalanced data
+- **Optuna** — Bayesian hyperparameter search with pruning
+- **Scikit-learn** — `Pipeline` (scaler → model) for leak-free CV and deployment
+- **MLflow** — parameter and metric logging across all tuning runs
+- **FastAPI + Pydantic** — typed REST API with auto-generated OpenAPI docs at `/docs`
 
-📊 Results
+---
 
-ROC-AUC (final) : 0.9646
+## Author
 
-Precision (fraud): 0.83
-
-Recall (fraud) :	0.86
-
-Accuracy (overall)	: 0.999
----- 
-
-Tech Stack
-
-	•	Python 3.10
-
-	•	LightGBM
-
-	•	Optuna
-
-	•	Scikit-learn
-
-	•	FastAPI
-
-	•	MLflow
-
-	•	Joblib
-
-⸻
-
-Key Takeaways
-
-	•	Built a production-ready pipeline combining ML and MLOps principles.
-
-	•	Automated tuning + experiment tracking via Optuna and MLflow.
-
-	•	Deployed model as a real-time prediction API.
-
-	•	Achieved 99.9% accuracy and AUC ≈ 0.96 on real-world imbalanced data.
-
-⸻
-
-👤 Author
-
-El Mehdi EL KASMI
-ML & Data Science — Mines Paris / HEC Paris
+**El Mehdi EL KASMI**

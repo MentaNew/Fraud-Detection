@@ -5,7 +5,9 @@ lightgbm
 optuna
 mlflow
 fastapi
-uvicorn
+uvicorn[standard]
 joblib
-tqdm
+shap
+matplotlib
+seaborn
 pyyaml

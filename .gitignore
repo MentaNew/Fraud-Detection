@@ -25,6 +25,8 @@ checkpoints/
 # -----------------
 mlruns/
 optuna_studies.db
+*.db
+*.sqlite
 logs/
 
 # -----------------
@@ -36,6 +38,7 @@ logs/
 *.csv~
 __MACOSX/
 .ipynb_checkpoints/
+*.png
 
 # -----------------
 # Data
@@ -45,10 +48,34 @@ datasets/
 raw_data/
 *.zip
 *.tar.gz
+*.csv
 
 # -----------------
 # Environment files
 # -----------------
+.env
 env/
 venv/
 *.egg-info/
+dist/
+build/
+
+# -----------------
+# Dev / CI caches
+# -----------------
+.pytest_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# -----------------
+# Markdown files
+# -----------------
+*.md
+!README.md
+
+# -----------------
+# Scratch / legacy folders
+# -----------------
+docs fraud_det/

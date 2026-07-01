@@ -100,5 +100,6 @@ def tune(
 
 if __name__ == "__main__":
     from src.utils import setup_logging
+
     setup_logging()
     tune()

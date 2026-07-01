@@ -5,6 +5,7 @@ All fixtures build a small in-memory dataset that mirrors its structure
 (30 numeric features, binary Class label) so every test runs without the
 original file.
 """
+
 from pathlib import Path
 
 import lightgbm as lgb

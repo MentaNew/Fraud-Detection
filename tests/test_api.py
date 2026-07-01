@@ -1,6 +1,7 @@
 """API tests use FastAPI dependency overrides to inject a pre-trained tiny
 pipeline instead of loading from disk — so no model file is needed on CI.
 """
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -26,12 +27,14 @@ def client(trained_pipeline):
 
 # --- /health ---
 
+
 def test_health_returns_200(client):
     resp = client.get("/health")
     assert resp.status_code == 200
 
 
 # --- /predict ---
+
 
 def test_predict_valid(client):
     resp = client.post("/predict", json={"features": VALID_FEATURES})
@@ -56,6 +59,7 @@ def test_predict_empty_features_rejected(client):
 
 # --- /predict_batch ---
 
+
 def test_predict_batch_returns_list(client):
     payload = {
         "transactions": [
@@ -77,6 +81,7 @@ def test_predict_batch_invalid_transaction_rejected(client):
 
 
 # --- /explain ---
+
 
 def test_explain_valid(client):
     resp = client.post("/explain", json={"features": VALID_FEATURES})

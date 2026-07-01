@@ -1,5 +1,4 @@
 import numpy as np
-import pytest
 
 from src.data_pipeline import get_splits
 from src.model_training import compute_optimal_threshold, train_baseline

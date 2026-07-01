@@ -1,5 +1,4 @@
 import numpy as np
-import pytest
 
 from src.data_pipeline import get_splits, load_data, preprocess_data
 

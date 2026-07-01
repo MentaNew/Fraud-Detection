@@ -6,7 +6,6 @@ from fastapi.testclient import TestClient
 
 from src.explainer import SHAPExplainer
 
-
 VALID_FEATURES = [0.0] * 30
 
 

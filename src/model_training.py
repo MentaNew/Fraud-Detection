@@ -41,10 +41,10 @@ def train_baseline(
     pipe = Pipeline([("scaler", StandardScaler()), ("model", model)])
     pipe.fit(X_train, y_train)
 
-    preds = pipe.predict(X_test)
     proba = pipe.predict_proba(X_test)[:, 1]
     auc = roc_auc_score(y_test, proba)
     threshold = compute_optimal_threshold(np.array(y_test), proba)
+    preds = (proba >= threshold).astype(int)
 
     logger.info("ROC-AUC: %.4f | Optimal F1 threshold: %.4f", auc, threshold)
     logger.info("\n%s", classification_report(y_test, preds))

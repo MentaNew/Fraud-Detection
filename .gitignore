@@ -79,3 +79,5 @@ htmlcov/
 # Scratch / legacy folders
 # -----------------
 docs fraud_det/
+
+graphify-out/

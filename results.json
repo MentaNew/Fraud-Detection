@@ -1,0 +1,34 @@
+{
+  "model": "LightGBM (Optuna-tuned)",
+  "dataset": "ULB Credit Card Fraud (284,807 transactions)",
+  "metrics": {
+    "roc_auc": 0.978,
+    "pr_auc": 0.8842,
+    "precision_fraud": 0.9326,
+    "recall_fraud": 0.8469,
+    "f1_fraud": 0.8877,
+    "accuracy": 0.9996
+  },
+  "confusion_matrix": {
+    "tp": 83,
+    "fp": 6,
+    "fn": 15,
+    "tn": 56858
+  },
+  "threshold": 0.7665136188534569,
+  "tuning": {
+    "objective": "average_precision (PR-AUC)",
+    "n_trials": 40,
+    "cv_folds": 3,
+    "best_cv_pr_auc": 0.857,
+    "best_params": {
+      "n_estimators": 791,
+      "learning_rate": 0.0398592787452971,
+      "num_leaves": 185,
+      "min_child_samples": 137,
+      "max_depth": 10,
+      "subsample": 0.8581841195313155,
+      "colsample_bytree": 0.7061386549731807
+    }
+  }
+}

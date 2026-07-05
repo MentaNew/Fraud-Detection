@@ -18,7 +18,7 @@ N_FEATURES = 30
 
 _resources: dict = {}
 
-## Context manager lifespan (given to instantiate app) that handles expensive startup/shutdown 
+## Context manager lifespan (given to instantiate app) that handles expensive startup/shutdown
 # resources (DB connections, ML models, thread pools, etc.)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
